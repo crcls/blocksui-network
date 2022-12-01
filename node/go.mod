@@ -12,7 +12,7 @@ require (
 	github.com/ipfs/go-cid v0.3.2
 	github.com/ipfs/go-ipfs-api v0.3.0
 	github.com/multiformats/go-multihash v0.2.1
-	github.com/tetratelabs/wazero v1.0.0-pre.1
+	github.com/tetratelabs/wazero v1.0.0-pre.4
 	github.com/tyler-smith/go-bip39 v1.1.0
 	github.com/umbracle/ethgo v0.1.3
 	github.com/web3-storage/go-w3s-client v0.0.6

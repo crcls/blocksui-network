@@ -101,11 +101,11 @@ func NewWasmInstance(ctx context.Context) (*Wasm, error) {
 	r := wazero.NewRuntime(ctx)
 	h := &StringHeap{}
 
-	if _, err := r.NewModuleBuilder("wbg").
-		ExportFunction("__wbindgen_throw", wbingenThrow).
-		ExportFunction("__wbindgen_object_drop_ref", h.wbingenObjectDropRef).
-		ExportFunction("__wbindgen_string_new", h.wbingenStringNew).
-		ExportFunction("__wbg_log_9a99fb1af846153b", h.wbingenLog9a99fb1af846153b).
+	if _, err := r.NewHostModuleBuilder("wbg").
+		NewFunctionBuilder().WithFunc(wbingenThrow).Export("__wbindgen_throw").
+		NewFunctionBuilder().WithFunc(h.wbingenObjectDropRef).Export("__wbindgen_object_drop_ref").
+		NewFunctionBuilder().WithFunc(h.wbingenStringNew).Export("__wbindgen_string_new").
+		NewFunctionBuilder().WithFunc(h.wbingenLog9a99fb1af846153b).Export("__wbg_log_9a99fb1af846153b").
 		Instantiate(ctx, r); err != nil {
 		return nil, err
 	}
